@@ -10,6 +10,7 @@ import {
 // All pages
 import Home from './pages/Home';
 import Contact from './pages/Contact';
+import Donate from "./components/Donate";
 
 import {useDocTitle} from './components/CustomHook';
 import ScrollToTop from './components/ScrollToTop';
@@ -38,6 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/donate" element={<Donate />} />
           </Routes>
         </ScrollToTop>
       </Router>
