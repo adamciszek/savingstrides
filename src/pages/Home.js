@@ -1,11 +1,11 @@
 import React from 'react';
-import Clients from '../components/Clients';
+import GetInvolved from '../components/GetInvolved';
 import Cta from '../components/Cta';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import Intro from '../components/Intro';
 import Portfolio from '../components/Portfolio';
-import Services from '../components/Services';
+import Partners from '../components/Partners';
 
 
 const Home = () => {
@@ -13,9 +13,8 @@ const Home = () => {
         <>
             <Hero />
             <Intro />
-            <Services />
-            <Portfolio />
-            <Clients />
+            <Partners />
+            <GetInvolved />
             <Cta/>
             <Footer />
         </>
