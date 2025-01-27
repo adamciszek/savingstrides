@@ -48,12 +48,12 @@ const Footer = () => {
                                     </HashLink>
                                 </li>
                                 <li className="mb-2" style={{minWidth: "150px"}}>
-                                    <Link
-                                        to="/Donate"
-                                        className="text-gray-800 hover:text-gray-900 hover:tracking-wider transition-all duration-250 ease-in-out inline-block"
-                                    >
+
+                                    <a href="https://buy.stripe.com/3cs4jO8ceaXSghO6oo"
+                                       className="text-gray-800 hover:text-gray-900 hover:tracking-wider transition-all duration-250 ease-in-out inline-block"                                       target="_blank"
+                                       >
                                         Donate
-                                    </Link>
+                                    </a>
                                 </li>
                             </ul>
                         </div>

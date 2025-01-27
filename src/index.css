@@ -10,8 +10,11 @@ body {
 }
 
 .hero {
-  background: linear-gradient(rgba(2,2,2,.7),rgba(0,0,0,.7)),url(https://www.justrunlah.com/wp-content/uploads/2016/07/group-of-young-people-runs-at-the-beach-on-beautiful-summer-sunset.jpg);
+  background: linear-gradient(rgba(2, 2, 2, .7), rgba(0, 0, 0, .7)),
+  url('/src/images/background-image.jpg') fixed center center;
+  background-size: cover;
 }
+
 
 .footer {
   background: url(./images/footer.svg) top center no-repeat;
