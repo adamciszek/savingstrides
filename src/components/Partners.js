@@ -62,7 +62,7 @@ const Partners = () => {
                         {/* Placeholder for future partners */}
                         <div className="bg-white transition-all ease-in-out duration-400 overflow-hidden text-black rounded-lg shadow-2xl p-3 group flex flex-col h-full">
                             <div className="flex-1 flex justify-center items-center">
-                                <img alt="Placeholder for Future Partners" className="rounded-t group-hover:scale-[1.50] transition duration-1000 ease-in-out max-h-[50%]" src={dixon} />
+                                <img alt="Placeholder for Future Partners" className="rounded-t group-hover:scale-[1.70] transition duration-1000 ease-in-out max-h-[50%]" src={dixon} />
                             </div>
                             <div className="flex-none text-center p-4 h-30">
                                 <h2 className="font-semibold my-4 text-2xl">Dixon Hall Neighbourhood Services</h2>

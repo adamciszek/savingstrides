@@ -1,3 +1,68 @@
+import React, { useState, useEffect, useRef } from 'react';
+
+const GetInvolved = () => {
+    const [text, setText] = useState('');
+    const [startTyping, setStartTyping] = useState(false);
+    const sectionRef = useRef(null);
+    const fullText = 'coming soon';
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setStartTyping(true);
+                }
+            },
+            { threshold: 0.5 }
+        );
+
+        if (sectionRef.current) {
+            observer.observe(sectionRef.current);
+        }
+
+        return () => {
+            if (sectionRef.current) {
+                observer.unobserve(sectionRef.current);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (startTyping) {
+            let index = 0;
+            const interval = setInterval(() => {
+                if (index < fullText.length) {
+                    setText((prev) => prev + fullText[index]);
+                    index++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 150);
+            return () => clearInterval(interval);
+        }
+    }, [startTyping]);
+
+    return (
+        <div className="mt-8 bg-gray-100 py-12" id="GetInvolved" ref={sectionRef}>
+            <section>
+                <div className="my-4 py-4">
+                    <h2 className="my-2 text-center text-3xl text-black uppercase font-bold">Get Involved</h2>
+                    <div className="flex justify-center">
+                        <div className="w-24 border-b-4 border-black"></div>
+                    </div>
+                </div>
+
+                <div className="flex justify-center items-center min-h-[50vh]">
+                    <h1 className="text-5xl font-mono">{text}</h1>
+                </div>
+            </section>
+        </div>
+    );
+};
+
+export default GetInvolved;
+
+/*
 import React from 'react';
 
 const EventCard = ({ title, date, location, itemsToBring }) => (
@@ -15,7 +80,6 @@ const EventCard = ({ title, date, location, itemsToBring }) => (
         </div>
     </div>
 );
-
 
 const GetInvolved = () => {
     const events = [
@@ -68,3 +132,4 @@ const GetInvolved = () => {
 }
 
 export default GetInvolved;
+*/

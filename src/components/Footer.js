@@ -1,5 +1,6 @@
 import React from "react";
 import { HashLink } from "react-router-hash-link";
+import {Link} from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -22,29 +23,37 @@ const Footer = () => {
                         <div>
                             <h6 className="text-black text-xl font-bold mb-4">LINKS</h6>
                             <ul className="text-md">
-                                <li className="mb-2" style={{ minWidth: "150px" }}>
+                                <li className="mb-2" style={{minWidth: "150px"}}>
                                     <HashLink
-                                        to="#"
+                                        smooth to="#about"
                                         className="text-gray-800 hover:text-gray-900 hover:tracking-wider transition-all duration-250 ease-in-out inline-block"
                                     >
                                         About
                                     </HashLink>
                                 </li>
-                                <li className="mb-2" style={{ minWidth: "150px" }}>
+                                <li className="mb-2" style={{minWidth: "150px"}}>
                                     <HashLink
-                                        to="#"
+                                        smooth to="#OurPartners"
                                         className="text-gray-800 hover:text-gray-900 hover:tracking-wider transition-all duration-250 ease-in-out inline-block"
                                     >
-                                        Our Mission
+                                        Our Partners
                                     </HashLink>
                                 </li>
-                                <li className="mb-2" style={{ minWidth: "150px" }}>
+                                <li className="mb-2" style={{minWidth: "150px"}}>
                                     <HashLink
-                                        to="#"
+                                        smooth to="#GetInvolved"
                                         className="text-gray-800 hover:text-gray-900 hover:tracking-wider transition-all duration-250 ease-in-out inline-block"
                                     >
                                         Get Involved
                                     </HashLink>
+                                </li>
+                                <li className="mb-2" style={{minWidth: "150px"}}>
+                                    <Link
+                                        to="/Donate"
+                                        className="text-gray-800 hover:text-gray-900 hover:tracking-wider transition-all duration-250 ease-in-out inline-block"
+                                    >
+                                        Donate
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
