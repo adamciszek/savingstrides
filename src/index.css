@@ -11,9 +11,18 @@ body {
 
 .hero {
   background: linear-gradient(rgba(2, 2, 2, .7), rgba(0, 0, 0, .7)),
-  url('/src/images/background-image.jpg') fixed center center;
+  url('/src/images/background-image.jpg') center center;
   background-size: cover;
+  background-attachment: fixed;
 }
+
+/* Override for mobile */
+@media only screen and (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+  }
+}
+
 
 
 .footer {
