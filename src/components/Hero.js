@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import NavBar from './Navbar/NavBar';
+import {HashLink} from "react-router-hash-link";
 
 const Hero = () => {
     return (
@@ -17,6 +18,7 @@ const Hero = () => {
                     <p className="text-lg md:text-2xl font-medium text-gray-300 mb-8 leading-relaxed">
                         Working together as a community, for the community
                     </p>
+
                     <a
                         href="/contact"
                         className="text-white bg-black hover:bg-gray-800 px-8 py-4 rounded-2xl text-lg shadow-lg transition-transform transform hover:scale-105"

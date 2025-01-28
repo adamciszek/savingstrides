@@ -31,13 +31,12 @@ const NavLinks = () => {
             >
                 Get Involved
             </HashLink>
-            <HashLink
+            <a
                 className="text-white bg-black hover:bg-gray-800 inline-flex items-center justify-center w-auto px-6 py-3 shadow-xl rounded-xl"
-                smooth to="/contact#contact"
-                scroll={scrollWithOffset}
+                href="/contact"
             >
                 Contact Us
-            </HashLink>
+            </a>
         </>
     )
 }
