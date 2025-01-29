@@ -83,10 +83,10 @@ const Contact = () => {
                                     value={formData.phone_number}
                                     onChange={handleChange}
                                     required
-                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                                    pattern="[0-9]{10}"
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition-all"
-                                    placeholder="xxx-xxx-xxxx"
-                                    title="Please enter a valid phone number (xxx-xxx-xxxx)"
+                                    placeholder="xxxxxxxxxx"
+                                    title="Please enter a valid phone number (xxxxxxxxxx)"
                                 />
                             </div>
 
