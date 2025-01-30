@@ -8,27 +8,31 @@ const NavLinks = ({ isTransparent, isMobileMenuOpen }) => {
         window.scrollTo({ top: yCoordinate - offset, behavior: 'smooth' });
     };
 
-    // Determine hover color based on isMobileMenuOpen and isTransparent
-    const hoverColor = isMobileMenuOpen ? 'text-black' : (isTransparent ? 'text-white' : 'text-black');
+    // Static class names for hover states
+    const hoverClass = isMobileMenuOpen
+        ? 'hover:text-black' // Always black on mobile menu
+        : isTransparent
+            ? 'hover:text-white' // White on transparent background
+            : 'hover:text-black'; // Black on white background
 
     return (
         <>
             <HashLink
-                className={`px-4 font-extrabold text-gray-500 hover:${hoverColor}`}
+                className={`px-4 font-extrabold text-gray-500 ${hoverClass}`}
                 smooth to="/#about"
                 scroll={scrollWithOffset}
             >
                 About
             </HashLink>
             <HashLink
-                className={`px-4 font-extrabold text-gray-500 hover:${hoverColor}`}
+                className={`px-4 font-extrabold text-gray-500 ${hoverClass}`}
                 smooth to="/#partners"
                 scroll={scrollWithOffset}
             >
                 Our Partners
             </HashLink>
             <HashLink
-                className={`px-4 font-extrabold text-gray-500 hover:${hoverColor}`}
+                className={`px-4 font-extrabold text-gray-500 ${hoverClass}`}
                 smooth to="/#GetInvolved"
                 scroll={scrollWithOffset}
             >
