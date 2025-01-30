@@ -1,31 +1,34 @@
 import React from 'react';
 import { HashLink } from 'react-router-hash-link';
 
-const NavLinks = () => {
+const NavLinks = ({ isTransparent, isMobileMenuOpen }) => {
     const scrollWithOffset = (el) => {
         const yCoordinate = el.getBoundingClientRect().top + window.pageYOffset;
-        const offset = 150;
+        const offset = 100;
         window.scrollTo({ top: yCoordinate - offset, behavior: 'smooth' });
     };
+
+    // Determine hover color based on isMobileMenuOpen and isTransparent
+    const hoverColor = isMobileMenuOpen ? 'text-black' : (isTransparent ? 'text-white' : 'text-black');
 
     return (
         <>
             <HashLink
-                className="px-4 font-extrabold text-gray-500 hover:text-black"
+                className={`px-4 font-extrabold text-gray-500 hover:${hoverColor}`}
                 smooth to="/#about"
                 scroll={scrollWithOffset}
             >
                 About
             </HashLink>
             <HashLink
-                className="px-4 font-extrabold text-gray-500 hover:text-black"
+                className={`px-4 font-extrabold text-gray-500 hover:${hoverColor}`}
                 smooth to="/#partners"
                 scroll={scrollWithOffset}
             >
                 Our Partners
             </HashLink>
             <HashLink
-                className="px-4 font-extrabold text-gray-500 hover:text-black"
+                className={`px-4 font-extrabold text-gray-500 hover:${hoverColor}`}
                 smooth to="/#GetInvolved"
                 scroll={scrollWithOffset}
             >
@@ -38,7 +41,7 @@ const NavLinks = () => {
                 Contact Us
             </a>
         </>
-    )
-}
+    );
+};
 
 export default NavLinks;

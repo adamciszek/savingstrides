@@ -50,8 +50,9 @@ const Footer = () => {
                                 <li className="mb-2" style={{minWidth: "150px"}}>
 
                                     <a href="https://buy.stripe.com/3cs4jO8ceaXSghO6oo"
-                                       className="text-gray-800 hover:text-gray-900 hover:tracking-wider transition-all duration-250 ease-in-out inline-block"                                       target="_blank"
-                                       >
+                                       className="text-gray-800 hover:text-gray-900 hover:tracking-wider transition-all duration-250 ease-in-out inline-block"
+                                       target="_blank"
+                                    >
                                         Donate
                                     </a>
                                 </li>
@@ -61,12 +62,12 @@ const Footer = () => {
 
                     {/* 3rd Section */}
                     <div className="flex-1 flex justify-center items-center p-4">
-                        <div>
+                        <div className="text-center lg:text-left">
                             <h6 className="text-black text-xl font-bold mb-4">Social Media</h6>
                             <p className="text-md font-medium text-gray-600 mb-4">
                                 Follow us on social media.
                             </p>
-                            <div className="flex space-x-6">
+                            <div className="flex space-x-6 justify-center lg:justify-start">
                                 <a
                                     href="https://www.linkedin.com/company/saving-strides"
                                     target="_blank"
@@ -115,7 +116,7 @@ const Footer = () => {
                         <HashLink to="#" className="hover:text-gray-900">
                             Saving Strides
                         </HashLink>
-                        . All rights reserved. v1.0
+                        . All rights reserved. v1.0.1
                     </p>
                 </div>
             </div>
