@@ -1,135 +1,67 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
+import { db } from '../firebase';
+import { collection, onSnapshot, query, orderBy } from 'firebase/firestore';
 
 const GetInvolved = () => {
-    const [text, setText] = useState('');
-    const [startTyping, setStartTyping] = useState(false);
-    const sectionRef = useRef(null);
-    const fullText = 'coming soon';
+    const [events, setEvents] = useState([]);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting) {
-                    setStartTyping(true);
-                }
-            },
-            { threshold: 0.5 }
-        );
-
-        if (sectionRef.current) {
-            observer.observe(sectionRef.current);
-        }
-
-        return () => {
-            if (sectionRef.current) {
-                observer.unobserve(sectionRef.current);
-            }
-        };
+        const q = query(collection(db, 'events'), orderBy('timestamp', 'desc'));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const eventsData = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data(),
+                formattedDate: new Date(doc.data().date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+            }));
+            setEvents(eventsData);
+        });
+        return unsubscribe;
     }, []);
 
-    useEffect(() => {
-        if (startTyping) {
-            let index = 0;
-            const interval = setInterval(() => {
-                if (index < fullText.length) {
-                    setText((prev) => prev + fullText[index]);
-                    index++;
-                } else {
-                    clearInterval(interval);
-                }
-            }, 150);
-            return () => clearInterval(interval);
-        }
-    }, [startTyping]);
-
     return (
-        <div className="mt-8 bg-gray-100 py-12" id="GetInvolved" ref={sectionRef}>
-            <section>
-                <div className="my-4 py-4">
-                    <h2 className="my-2 text-center text-3xl text-black uppercase font-bold">Get Involved</h2>
-                    <div className="flex justify-center">
-                        <div className="w-24 border-b-4 border-black"></div>
-                    </div>
-                </div>
+        <section id="getinvolved" className="py-16 px-4 bg-white">
+            <div className="max-w-6xl mx-auto">
+                <h2 className="text-4xl font-bold text-center mb-12 text-black">
+                    Get Involved
+                </h2>
 
-                <div className="flex justify-center items-center min-h-[50vh]">
-                    <h1 className="text-5xl font-mono">{text}</h1>
+                <div className="space-y-12">
+                    {events.length === 0 ? (
+                        <p className="text-center text-gray-700 text-lg">
+                            Stay tuned for upcoming events!
+                        </p>
+                    ) : (
+                        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                            {events.map((event) => (
+                                <div
+                                    key={event.id}
+                                    className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300"
+                                >
+                                    <div className="p-6">
+                                        <div className="mb-4">
+                                            <span className="text-sm font-medium text-gray-600">
+                                                {event.formattedDate}
+                                            </span>
+                                        </div>
+                                        <h3 className="text-xl font-bold text-black mb-3">
+                                            {event.title}
+                                        </h3>
+                                        <p className="text-gray-700 leading-relaxed">
+                                            {event.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     );
 };
 
 export default GetInvolved;
-
-/*
-import React from 'react';
-
-const EventCard = ({ title, date, location, itemsToBring }) => (
-    <div className="bg-white transition-all ease-in-out duration-400 overflow-hidden text-black rounded-lg shadow-2xl p-3 group flex flex-col h-full hover:bg-gray-200">
-        <div className="flex-none text-center p-4">
-            <h2 className="font-semibold my-4 text-2xl">{title}</h2>
-            <p className="text-md font-medium mb-2">{date}</p>
-            <p className="text-lg font-medium">{location}</p>
-            <h4 className="font-semibold my-2">What to Bring:</h4>
-            <ul className="list-disc pl-[35%] mx-auto text-left">
-                {itemsToBring.map((item, index) => (
-                    <li key={index} className="text-md">{item}</li>
-                ))}
-            </ul>
-        </div>
-    </div>
-);
-
-const GetInvolved = () => {
-    const events = [
-        {
-            title: "Run for Newmarket",
-            date: "October 13, 2024",
-            location: "Newmarket, ON",
-            itemsToBring: ["Running shoes", "Donation of used shoes"]
-        },
-        {
-            title: "Saving Strides Shoe Drive",
-            date: "November 5, 2024",
-            location: "Toronto, ON",
-            itemsToBring: ["Used running shoes", "Volunteer support"]
-        },
-        {
-            title: "Annual Charity Run",
-            date: "December 1, 2024",
-            location: "Scarborough, ON",
-            itemsToBring: ["Running gear", "Shoes for donation"]
-        }
-    ];
-
-    return (
-        <div className="mt-8 bg-gray-100 py-12" id="GetInvolved">
-            <section data-aos="zoom-in-down">
-                <div className="my-4 py-4">
-                    <h2 className="my-2 text-center text-3xl text-black uppercase font-bold">Get Involved</h2>
-                    <div className='flex justify-center'>
-                        <div className='w-24 border-b-4 border-black'></div>
-                    </div>
-                </div>
-
-                <div className="px-12" data-aos="fade-down" data-aos-delay="600">
-                    <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-10">
-                        {events.map((event, index) => (
-                            <EventCard
-                                key={index}
-                                title={event.title}
-                                date={event.date}
-                                location={event.location}
-                                itemsToBring={event.itemsToBring}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </section>
-        </div>
-    );
-}
-
-export default GetInvolved;
-*/

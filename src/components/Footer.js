@@ -1,8 +1,12 @@
 import React from "react";
 import { HashLink } from "react-router-hash-link";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { auth } from '../firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Footer = () => {
+    const [user] = useAuthState(auth);
+
     return (
         <footer className="bg-gray-100 border-t py-12">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,6 +18,24 @@ const Footer = () => {
                             <h3 className="font-bold text-4xl mb-4">Saving Strides</h3>
                             <div className="text-md font-medium text-gray-600">
                                 <p>savingstrides@gmail.com</p>
+                                {/* Admin Login/Logout */}
+                                <p className="mt-2">
+                                    {user ? (
+                                        <button
+                                            onClick={() => auth.signOut()}
+                                            className="hover:text-gray-900 transition-colors"
+                                        >
+                                            Admin Logout
+                                        </button>
+                                    ) : (
+                                        <Link
+                                            to="/login"
+                                            className="hover:text-gray-900 transition-colors"
+                                        >
+                                            Admin Login
+                                        </Link>
+                                    )}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -116,7 +138,7 @@ const Footer = () => {
                         <HashLink to="#" className="hover:text-gray-900">
                             Saving Strides
                         </HashLink>
-                        . All rights reserved. v1.0.1
+                        . All rights reserved. v1.1
                     </p>
                 </div>
             </div>
