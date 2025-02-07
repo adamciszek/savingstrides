@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import { useDocTitle } from '../components/CustomHook';
 
 const Contact = () => {
-    useDocTitle('Saving Strides - Send us a message');
+    useDocTitle('contact us');
     const [formData, setFormData] = useState({
         name: '',
         email: '',
