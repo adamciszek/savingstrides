@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import { Link } from "react-router-dom";
 import { auth } from '../firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import LoginModal from './LoginModal'; // Import the LoginModal component
 
 const Footer = () => {
     const [user] = useAuthState(auth);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
     return (
         <footer className="bg-gray-100 border-t py-12">
@@ -28,12 +30,12 @@ const Footer = () => {
                                             Admin Logout
                                         </button>
                                     ) : (
-                                        <Link
-                                            to="/login"
+                                        <button
+                                            onClick={() => setIsLoginModalOpen(true)}
                                             className="hover:text-gray-900 transition-colors"
                                         >
                                             Admin Login
-                                        </Link>
+                                        </button>
                                     )}
                                 </p>
                             </div>
@@ -138,10 +140,13 @@ const Footer = () => {
                         <HashLink to="#" className="hover:text-gray-900">
                             Saving Strides
                         </HashLink>
-                        . All rights reserved. v1.1
+                        . All rights reserved. v1.1.1
                     </p>
                 </div>
             </div>
+
+            {/* Render the Login Modal */}
+            {isLoginModalOpen && <LoginModal onClose={() => setIsLoginModalOpen(false)} />}
         </footer>
     );
 };

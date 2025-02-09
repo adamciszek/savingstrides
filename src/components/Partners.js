@@ -49,7 +49,7 @@ const Partners = () => {
                         {/* Me Versus Me (MVM) */}
                         <div className="bg-white transition-all ease-in-out duration-400 overflow-hidden text-black rounded-lg shadow-2xl p-3 group flex flex-col h-full">
                             <div className="flex-1 flex justify-center items-center">
-                                <img alt="Me Versus Me" className="rounded-t group-hover:scale-[1.30] transition duration-1000 ease-in-out max-h-[50%]" src={mvm} />
+                                <img alt="Me Versus Me" className="rounded-t group-hover:scale-[1.2] transition duration-1000 ease-in-out max-h-[50%]" src={mvm} />
                             </div>
                             <div className="flex-none text-center p-4 h-30">
                                 <h2 className="font-semibold my-4 text-2xl">Me Versus Me (MVM)</h2>
