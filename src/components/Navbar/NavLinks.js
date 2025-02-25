@@ -33,7 +33,7 @@ const NavLinks = ({ isTransparent, isMobileMenuOpen }) => {
             </HashLink>
             <HashLink
                 className={`px-4 font-extrabold text-gray-500 ${hoverClass}`}
-                smooth to="/#GetInvolved"
+                smooth to="/#getinvolved"
                 scroll={scrollWithOffset}
             >
                 Get Involved
