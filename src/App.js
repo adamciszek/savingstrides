@@ -10,6 +10,7 @@ import {
 // All pages
 import Home from './pages/Home';
 import Contact from './pages/Contact';
+import EventReminderPopup from './components/EventReminderPopup';
 
 import {useDocTitle} from './components/CustomHook';
 import ScrollToTop from './components/ScrollToTop';
@@ -39,6 +40,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
+          <EventReminderPopup />
         </ScrollToTop>
       </Router>
     </>
