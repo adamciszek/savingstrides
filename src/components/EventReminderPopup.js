@@ -46,7 +46,7 @@ const EventReminderPopup = () => {
         if (isLoaded && upcomingEvent) {
             const timer = setTimeout(() => {
                 setShowPopup(true);
-            }, 5000); // 10 seconds delay
+            }, 2500); // 2.5 seconds delay
 
             return () => clearTimeout(timer);
         }
