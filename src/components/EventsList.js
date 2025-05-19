@@ -12,6 +12,7 @@ const EventsList = () => {
                 id: doc.id,
                 ...doc.data(),
                 formattedDate: new Date(doc.data().date).toLocaleDateString('en-US', {
+                    timeZone: 'UTC',
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
