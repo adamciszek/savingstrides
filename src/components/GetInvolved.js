@@ -1,33 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { db } from '../firebase';
-import { collection, onSnapshot, query, orderBy, addDoc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
+import EventsList from './EventsList'; // Adjust path if needed
 
 const GetInvolved = () => {
-    const [events, setEvents] = useState([]);
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
 
-    // Fetch events from Firestore
-    useEffect(() => {
-        const q = query(collection(db, 'events'), orderBy('timestamp', 'desc'));
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const eventsData = snapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data(),
-                formattedDate: new Date(doc.data().date).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                })
-            }));
-            setEvents(eventsData);
-        });
-        return unsubscribe;
-    }, []);
-
     // Validate email format
     const isValidEmail = (email) => {
-        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return regex.test(email);
     };
 
@@ -35,17 +17,15 @@ const GetInvolved = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Validate email
         if (!email || !isValidEmail(email)) {
             setMessage('Please enter a valid email address.');
             return;
         }
 
         try {
-            // Add email to Firestore
             await addDoc(collection(db, 'subscribers'), {
-                email: email,
-                timestamp: new Date().toISOString() // Optional: Add a timestamp
+                email,
+                timestamp: new Date().toISOString()
             });
             setMessage('Thank you for signing up!');
             setEmail('');
@@ -86,37 +66,9 @@ const GetInvolved = () => {
                     {message && <p className="mt-4 text-gray-700">{message}</p>}
                 </div>
 
-                {/* Events list */}
-                <div className="space-y-12">
-                    {events.length === 0 ? (
-                        <p className="text-center text-gray-700 text-lg">
-                            Stay tuned for upcoming events!
-                        </p>
-                    ) : (
-                        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                            {events.map((event) => (
-                                <div
-                                    key={event.id}
-                                    className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300"
-                                >
-                                    <div className="p-6">
-                                        <div className="mb-4">
-                                            <span className="text-sm font-medium text-gray-600">
-                                                {event.formattedDate}
-                                            </span>
-                                        </div>
-                                        <h3 className="text-xl font-bold text-black mb-3">
-                                            {event.title}
-                                        </h3>
-                                        {/* Use <pre> to preserve line breaks */}
-                                        <pre className="text-gray-700 leading-relaxed whitespace-pre-wrap font-sans">
-                                            {event.description}
-                                        </pre>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
+                {/* Events List */}
+                <div className="mt-16">
+                    <EventsList />
                 </div>
             </div>
         </section>

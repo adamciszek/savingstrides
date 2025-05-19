@@ -5,7 +5,7 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 const AddEventForm = () => {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
-    const [description, setDescription] = useState('');
+    const [link, setLink] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -13,12 +13,12 @@ const AddEventForm = () => {
             await addDoc(collection(db, 'events'), {
                 title,
                 date,
-                description,
+                link,
                 timestamp: serverTimestamp()
             });
             setTitle('');
             setDate('');
-            setDescription('');
+            setLink('');
             alert('Event added successfully!');
         } catch (error) {
             alert(`Error adding event: ${error.message}`);
@@ -51,11 +51,12 @@ const AddEventForm = () => {
                 </div>
 
                 <div>
-                    <textarea
-                        placeholder="Event Description"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32"
+                    <input
+                        type="url"
+                        placeholder="Event Link (e.g. https://example.com)"
+                        value={link}
+                        onChange={(e) => setLink(e.target.value)}
+                        className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         required
                     />
                 </div>
