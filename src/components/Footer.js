@@ -140,7 +140,7 @@ const Footer = () => {
                         <HashLink to="#" className="hover:text-gray-900">
                             Saving Strides
                         </HashLink>
-                        . All rights reserved. v1.2.4
+                        . All rights reserved. v1.2.5
                     </p>
                 </div>
             </div>
