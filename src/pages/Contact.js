@@ -6,12 +6,14 @@ import { useDocTitle } from '../components/CustomHook';
 
 const Contact = () => {
     useDocTitle('contact us');
+
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         phone_number: '',
         message: ''
     });
+
     const [status, setStatus] = useState('');
 
     const handleChange = (e) => {
@@ -33,18 +35,18 @@ const Contact = () => {
     return (
         <>
             <NavBar />
-            <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4 py-12">
+            <div className="hero min-h-screen text-white flex flex-col items-center justify-center px-4 py-12">
                 <div className="w-full max-w-2xl mx-auto">
-                    <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center tracking-tight">
+                    <h2 className="text-4xl font-bold text-white mb-8 text-center tracking-tight">
                         Get in Touch
                     </h2>
                     <form
                         onSubmit={handleSubmit}
-                        className="bg-white p-8 rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl"
+                        className="bg-white/90 p-8 rounded-xl shadow-xl transition-all duration-300 hover:shadow-2xl"
                     >
                         <div className="space-y-6">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
+                                <label className="block text-sm font-medium text-gray-800 mb-2 uppercase tracking-wider">
                                     Name
                                 </label>
                                 <input
@@ -53,13 +55,13 @@ const Contact = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-600 transition-all text-black"
                                     placeholder="Enter your name"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
+                                <label className="block text-sm font-medium text-gray-800 mb-2 uppercase tracking-wider">
                                     Email
                                 </label>
                                 <input
@@ -68,13 +70,13 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-600 transition-all text-black"
                                     placeholder="your.email@example.com"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
+                                <label className="block text-sm font-medium text-gray-800 mb-2 uppercase tracking-wider">
                                     Phone Number
                                 </label>
                                 <input
@@ -84,14 +86,14 @@ const Contact = () => {
                                     onChange={handleChange}
                                     required
                                     pattern="[0-9]{10}"
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition-all"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-600 transition-all text-black"
                                     placeholder="xxxxxxxxxx"
                                     title="Please enter a valid phone number (xxxxxxxxxx)"
                                 />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
+                                <label className="block text-sm font-medium text-gray-800 mb-2 uppercase tracking-wider">
                                     Message
                                 </label>
                                 <textarea
@@ -99,7 +101,7 @@ const Contact = () => {
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-500 focus:border-gray-500 transition-all h-40"
+                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-gray-600 focus:border-gray-600 transition-all h-40 text-black"
                                     placeholder="Write your message here..."
                                 />
                             </div>
@@ -114,8 +116,8 @@ const Contact = () => {
                     </form>
 
                     {status && (
-                        <div className="mt-6 p-4 text-center rounded-lg bg-gray-100 border border-gray-200">
-                            <p className={`text-sm ${status.includes('success') ? 'text-gray-900' : 'text-gray-700'}`}>
+                        <div className="mt-6 p-4 text-center rounded-lg bg-white/80 border border-gray-300">
+                            <p className={`text-sm ${status.includes('success') ? 'text-gray-800' : 'text-gray-700'}`}>
                                 {status}
                             </p>
                         </div>
