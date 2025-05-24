@@ -8,31 +8,35 @@ const NavLinks = ({ isTransparent, isMobileMenuOpen }) => {
         window.scrollTo({ top: yCoordinate - offset, behavior: 'smooth' });
     };
 
-    // Static class names for hover states
-    const hoverClass = isMobileMenuOpen
-        ? 'hover:text-black' // Always black on mobile menu
-        : isTransparent
-            ? 'hover:text-white' // White on transparent background
-            : 'hover:text-black'; // Black on white background
+    const getLinkClass = () => {
+        if (isMobileMenuOpen) {
+            return 'text-black hover:text-gray-500';
+        }
+        return isTransparent
+            ? 'text-white hover:text-gray-500'
+            : 'text-black hover:text-gray-500';
+    };
+
+    const linkClass = `px-4 font-bold ${getLinkClass()}`;
 
     return (
         <>
             <HashLink
-                className={`px-4 font-extrabold text-gray-500 ${hoverClass}`}
+                className={linkClass}
                 smooth to="/#about"
                 scroll={scrollWithOffset}
             >
                 About
             </HashLink>
             <HashLink
-                className={`px-4 font-extrabold text-gray-500 ${hoverClass}`}
+                className={linkClass}
                 smooth to="/#partners"
                 scroll={scrollWithOffset}
             >
                 Our Partners
             </HashLink>
             <HashLink
-                className={`px-4 font-extrabold text-gray-500 ${hoverClass}`}
+                className={linkClass}
                 smooth to="/#getinvolved"
                 scroll={scrollWithOffset}
             >
